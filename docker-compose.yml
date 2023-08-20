@@ -1,0 +1,16 @@
+
+services:
+  web:
+    environment:
+      MONGODB_URI: "mongodb://root:root@mongo:27017/?retryWrites=true&w=majority"
+    build: .
+    depends_on:
+      - mongo
+    ports:
+      - "9000:9000"
+  mongo:
+    image: "mongo"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
